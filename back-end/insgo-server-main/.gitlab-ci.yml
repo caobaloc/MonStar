@@ -1,0 +1,17 @@
+# Define the stages of the pipeline
+stages:
+  - sonar-scanner
+
+image: sonarsource/sonar-scanner-cli
+
+sonarqube:
+  stage: sonar-scanner
+  script:
+    - sonar-scanner \
+        -Dsonar.organization=insgo-server \
+        -Dsonar.projectKey=insgo-server_tuandat99nd \
+        -Dsonar.sources=. \
+        -Dsonar.host.url=$SONAR_HOST_URL \
+        -Dsonar.login=$SONAR_TOKEN
+  only:
+    - merge_requests
