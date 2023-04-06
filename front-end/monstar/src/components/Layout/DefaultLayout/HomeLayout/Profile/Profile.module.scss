@@ -1,0 +1,82 @@
+.home-profile {
+  width: 19.9375rem;
+  margin: 0px 30px;
+  color: #fafafa;
+  font-weight: 600;
+  font-size: 0.9em;
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 2px;
+    cursor: pointer;
+    img {
+      height: 56px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+    Button {
+      color: #0095f6;
+      font-size: 0.75rem;
+      .btn-username {
+        color: #fafafa;
+        font-weight: 600;
+        font-size: 0.875rem;
+        font-family: 'Roboto', sans-serif;
+      }
+    }
+  }
+  .header-fl {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    label {
+      color: #a8a8a8;
+      font-size: 0.875rem;
+    }
+    Button {
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+  }
+  .fl-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 2px;
+    img {
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+    Button {
+      color: #0095f6;
+      font-size: 0.75rem;
+      .btn-username {
+        color: #fafafa;
+        font-weight: 600;
+        font-size: 0.875rem;
+        font-family: 'Roboto', sans-serif;
+      }
+    }
+  }
+  .footer {
+    margin-top: 30px;
+    font-size: 0.7rem;
+    font-weight: 200;
+    .footer-link-contact {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        color: #737373;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

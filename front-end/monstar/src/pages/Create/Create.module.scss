@@ -1,0 +1,25 @@
+.create {
+  margin-top: 20px;
+  color: white;
+  background-color: black;
+  width: 714px;
+  height: 750px;
+  border-radius: 10px;
+  text-align: center;
+  //   text-align: center;
+  > :first-child {
+    height: 42px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 42px;
+    border-bottom: solid 1px #a8a8a8a8;
+  }
+  .create-body {
+    align-items: center;
+    height: 100%;
+    button {
+      color: white;
+      background-color: #0095f6;
+    }
+  }
+}

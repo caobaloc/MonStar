@@ -1,0 +1,22 @@
+.footer {
+  margin: 0px auto;
+  font-size: 0.8rem;
+  max-width: 900px;
+  .footer-link-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    a {
+      margin: 0.5rem;
+      text-decoration: none;
+      color: #a8a8a8;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .footer-language {
+    text-align: center;
+    color: #a8a8a8;
+  }
+}

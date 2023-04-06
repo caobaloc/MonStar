@@ -1,0 +1,130 @@
+.profile {
+  color: white;
+  font-size: 1em;
+  width: 975px;
+  padding: 30px 20px 0px;
+  height: 100vh;
+  //   background-color: black;
+  .header-pro {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 60px;
+    .avatar-pro {
+      padding: 0px 70px;
+      img {
+        height: 150px;
+        border-radius: 50%;
+      }
+    }
+    .header-right {
+      width: 615px;
+      div {
+        display: flex;
+        align-items: center;
+        margin-right: 40px;
+        height: 40px;
+        span {
+          color: black;
+          font-weight: 600;
+          padding: 0px 16px;
+          background-color: white;
+          height: 32px;
+          line-height: 32px;
+          border-radius: 10px;
+          border: none;
+          &:hover {
+            background-color: #bdbdbd;
+          }
+        }
+        img {
+          cursor: pointer;
+          padding: 8px;
+        }
+      }
+      .pro-name {
+        height: 36px;
+        font-weight: 600;
+      }
+    }
+  }
+  .pro-menu {
+    border-top: solid 0.5px rgb(104, 102, 102);
+    // height: px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    Button {
+      padding: 15px 24px;
+      color: white;
+    }
+  }
+}
+
+//edit page
+.edit-profile {
+  margin: 30px 0px 20px 0px;
+  background-color: black;
+  color: white;
+  display: flex;
+  .menu {
+    border: solid 1px gray;
+  }
+  div
+  // padding-bottom: 30px;
+  Button {
+    color: white;
+  }
+  input {
+    background-color: transparent;
+    width: 355px;
+    border: solid 1px gray;
+    height: 32px;
+    padding: 0px 10px;
+    color: white;
+  }
+  .edit-pro-right {
+    padding-top: 25px;
+    padding-bottom: 30px;
+    img {
+      height: 38px;
+      border-radius: 50%;
+    }
+    .content {
+      display: flex;
+      .font-big {
+        padding: 0px 32px;
+        text-align: right;
+        margin: 6px 0px 0px;
+        width: 194px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      button {
+        color: #0095f6;
+      }
+      .right {
+        padding: 0px 60px 0px 0px;
+        width: 470px;
+        .font-small {
+          width: 355px;
+          margin: 14px 0px;
+        }
+
+        br + Button {
+          height: 32px;
+          background-color: #0095f6;
+          min-width: 80px;
+          padding: 0px 10px;
+          color: white;
+          font-size: 0.85rem;
+          border-radius: 10px;
+          margin-right: 100px;
+        }
+        label {
+          font-size: 0.75rem;
+          color: #a8a8a8;
+        }
+      }
+    }
+  }
+}
