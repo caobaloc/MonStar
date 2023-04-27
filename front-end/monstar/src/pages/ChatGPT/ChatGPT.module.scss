@@ -1,0 +1,48 @@
+.chatgpt {
+  > :nth-child(2) {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+    > input {
+      height: 40px;
+      width: 350px;
+      border-radius: 40px 0px 0px 40px;
+      padding: 10px 33px 10px 10px;
+      font-size: 14px;
+      color: black;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      background-color: rgb(217, 220, 223);
+    }
+    .btn-clear {
+      position: absolute;
+      left: 330px;
+      top: 30%;
+      img {
+        height: 15px;
+      }
+    }
+    .btn-search {
+      height: 40px;
+      width: 80px;
+      background-color: rgb(73, 74, 75);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgb(233, 231, 231);
+      border: none;
+      border-radius: 0px 40px 40px 0px;
+      &:hover {
+        background-color: rgb(96, 97, 99);
+      }
+    }
+  }
+  .data-gpt {
+    width: 500px;
+    color: rgb(241, 238, 238);
+    word-break: break-all;
+    font-size: 15px;
+    line-height: 25px;
+  }
+}

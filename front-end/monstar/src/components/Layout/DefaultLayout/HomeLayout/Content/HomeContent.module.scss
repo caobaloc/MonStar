@@ -1,11 +1,11 @@
 .header-content {
   .images-home {
-    max-height: 480px;
+    border-left: solid 0.7px grey;
+    border-right: solid 0.7px grey;
+    width: 461px;
     img {
-      width: 460px;
       max-height: 480px;
-      border-left: solid 0.7px grey;
-      border-right: solid 0.7px grey;
+      width: 460px;
     }
   }
   .home-ct-padding {
@@ -16,11 +16,9 @@
       border-right: solid 0.7px grey;
       display: flex;
       justify-content: space-between;
-      Button {
-        padding: 10px;
-        &:hover {
-          transform: scale(1.1);
-        }
+      padding-bottom: 20px;
+      :first-child {
+        display: flex;
       }
       img {
         height: 22px;
@@ -30,7 +28,33 @@
       border-left: solid 0.7px grey;
       border-right: solid 0.7px grey;
       padding: 0px 10px 10px;
+
+      > div {
+        color: white;
+        max-height: 50px;
+      }
+
       Button {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      p {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      span {
+        color: #a8a8a8;
+        font-size: 0.63rem;
+      }
+      ul,
+      li {
+        list-style: none;
         color: white;
       }
     }

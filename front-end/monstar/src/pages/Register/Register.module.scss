@@ -72,6 +72,9 @@
       font-weight: 400;
       letter-spacing: 1px;
       cursor: pointer;
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 

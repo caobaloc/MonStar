@@ -1,6 +1,6 @@
 .home-header {
   background-color: black;
-  width: 460px;
+  width: 461px;
   height: 55px;
   display: flex;
   justify-content: space-between;
@@ -9,8 +9,23 @@
   padding: 0px 20px;
   border: solid 1px grey;
   color: white;
+  > :first-child {
+    display: flex;
+    align-items: center;
+    img {
+      height: 30px;
+      width: 30px;
+      margin-right: 7px;
+      border-radius: 50%;
+    }
+  }
   .iconImg {
     height: 20px;
     margin-right: 7px;
+  }
+  span {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
   }
 }

@@ -1,16 +1,17 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 
 import images from '~/assets/images';
 import styles from './HomeHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
-function HomeHeader() {
+function HomeHeader({ headerAvatar, username }) {
   return (
     <div className={cx('home-header')}>
       <div>
-        <img src={images.iconHome} alt="" className={cx('iconImg')} />
-        <span>Lý An Vy</span>
+        <img src={headerAvatar} alt="" className={cx('iconImg')} />
+        <span>{username}</span>
       </div>
 
       <div>
@@ -19,5 +20,8 @@ function HomeHeader() {
     </div>
   );
 }
-
+HomeHeader.prototype = {
+  headerAvatar: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+};
 export default HomeHeader;

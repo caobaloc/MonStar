@@ -1,30 +1,24 @@
 import classNames from 'classnames/bind';
 
 import styles from './Home.module.scss';
-import HomeHeader from '~/components/Layout/DefaultLayout/HomeLayout/Header';
-import HomeContent from '~/components/Layout/DefaultLayout/HomeLayout/Content';
+import HomePost from '~/components/Layout/DefaultLayout/HomeLayout/HomePost';
 import HomeProfile from '~/components/Layout/DefaultLayout/HomeLayout/Profile';
 
 const cx = classNames.bind(styles);
 
-function Home() {
+const Home = () => {
   return (
     <div className={cx('home-content')}>
       <div>
-        <HomeHeader />
-        <HomeContent />
-        <HomeHeader />
-        <HomeContent />
-        <HomeHeader />
-        <HomeContent />
-        <HomeHeader />
-        <HomeContent />
+        <HomePost />
       </div>
       <div>
+        <br />
+        <br />
         <HomeProfile />
       </div>
     </div>
   );
-}
+};
 
 export default Home;

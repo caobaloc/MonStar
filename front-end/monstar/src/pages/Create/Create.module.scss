@@ -17,9 +17,27 @@
   .create-body {
     align-items: center;
     height: 100%;
+    img {
+      width: 100px;
+    }
     button {
       color: white;
       background-color: #0095f6;
+      height: 30px;
+      width: 100px;
+    }
+    textarea {
+      min-height: 60px;
+      width: 300px;
+      background-color: black;
+      outline: none;
+      margin-right: 30px;
+      font-size: 1rem;
+      padding-left: 5px;
+      border: none;
+      color: white;
+      word-wrap: break-word;
+      word-break: break-all;
     }
   }
 }

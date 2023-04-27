@@ -1,0 +1,26 @@
+.comment {
+  display: flex;
+  margin: 10px;
+  max-width: 460px;
+  color: white;
+  img {
+    height: 30px;
+    border-radius: 50%;
+  }
+  > div {
+    display: flex;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    .username {
+      font-size: 14px !important;
+      color: rgb(245, 243, 243) !important;
+      font-weight: 600;
+      .cmt {
+        font-size: 14px !important;
+        color: rgb(231, 228, 228) !important;
+        font-weight: 400;
+      }
+    }
+  }
+}

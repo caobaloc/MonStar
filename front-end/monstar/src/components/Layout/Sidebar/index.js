@@ -1,7 +1,10 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Sidebar.module.scss';
 import images from '~/assets/images';
@@ -11,6 +14,26 @@ import Menu, { MenuItem } from './Menu';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  function logOut() {
+    axios
+      .post(`http://localhost:8080/api/auth/logout`, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
+      .then((res) => {
+        console.log('Logout Thanh cong!');
+        localStorage.removeItem('token');
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.log('Error: ' + error);
+      });
+  }
+
   return (
     <div style={{ width: '420px' }}>
       <Menu>
@@ -26,7 +49,7 @@ function Sidebar() {
           </span>
           <span className={cx('menu-span')}>
             <img src={images.iconExplore} alt="" className={cx('iconImg')} />
-            <MenuItem title="Explore" to={config.routes.explore} />
+            <MenuItem title="Chat GPT" to={config.routes.explore} />
           </span>
           <span className={cx('menu-span')}>
             <img src={images.iconReel} alt="" className={cx('iconImg')} />
@@ -66,7 +89,9 @@ function Sidebar() {
                 <li>Report a problem</li>
                 <li>Switch accounts</li>
                 <li>
-                  <Link to="/Login">Log out</Link>
+                  <button style={{ color: 'white' }} onClick={logOut}>
+                    Log out
+                  </button>
                 </li>
               </ul>
             )}

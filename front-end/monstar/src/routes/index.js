@@ -2,7 +2,7 @@ import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Search from '~/pages/Search';
 import Messages from '~/pages/Messages';
-import Explore from '~/pages/Explore';
+import ChatGPT from '~/pages/ChatGPT';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import Profile from '~/pages/Profile';
@@ -13,7 +13,7 @@ const publicRoutes = [
   { path: '/', component: Home },
   { path: '/Following', component: Following },
   { path: '/Search', component: Search },
-  { path: '/Explore', component: Explore },
+  { path: '/Explore', component: ChatGPT },
   { path: '/Messages', component: Messages },
   { path: '/Profile', component: Profile },
   { path: '/edit', component: EditProfile },

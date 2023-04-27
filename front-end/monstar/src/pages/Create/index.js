@@ -1,11 +1,15 @@
 import React from 'react';
 import { useState, setState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// import lazyLoad from 'react-lazyload';
 
 import classNames from 'classnames/bind';
 import styles from './Create.module.scss';
 import config from '~/config';
 import images from '~/assets/images';
+import { postUpload } from '~/redux/APIRequest';
 
 const cx = classNames.bind(styles);
 
@@ -51,6 +55,7 @@ const cx = classNames.bind(styles);
 //     </div>
 //   );
 
+// const access_token = useSelector((sta) => sta.auth.login.currentUser);
 // class Create extends React.Component {
 //   state = {
 //     file: null,
@@ -64,14 +69,15 @@ const cx = classNames.bind(styles);
 //     let file = this.state.file;
 //     let formData = new FormData();
 
-//     formData.append('image', file);
-
+//     formData.append('files', file);
+//     formData.append('caption', 'Loc dep zai');
+//     axios.defaults.withCredentials = true;
 //     axios({
-//       url: '',
-//       method: 'POST',
+//       url: 'http://localhost:8080/api/post/upload',
 //       headers: {
-//         authorization: 'your-token',
+//         Authorization: this.access_token.access_token,
 //       },
+//       method: 'POST',
 //       data: formData,
 //     })
 //       .then((res) => {
@@ -105,36 +111,59 @@ const cx = classNames.bind(styles);
 //     );
 //   }
 // }
+
 function Create() {
   const [file, setFile] = useState(null);
+  const [captions, setCaptions] = useState('');
+  const navigate = useNavigate();
 
   const handleFileUpload = (event) => {
     setFile(event.target.files[0]);
     console.log(event.target.files[0]);
   };
 
+  const upload = useSelector((state) => state.auth.login.currentUser);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const formData = new FormData();
     formData.append('files', file);
+    formData.append('caption', captions);
+
     try {
-      const response = await axios.post('localhost:8080/api/post/upload', formData);
-      console.log(response);
+      const response = await axios.post('http://localhost:8080/api/post', formData, {
+        headers: {
+          Authorization: 'Bearer ' + upload.data.access_token,
+        },
+      });
+      navigate('/');
     } catch (error) {
       console.error(error);
-      console.log(formData);
     }
   };
   return (
     <div className={cx('create')}>
       <div className={cx('create-header')}>Create new post</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div className={cx('create-body')}>
         <img src={images.iconPostImg} alt="" />
+        <br />
         <div>
+          <br />
           <p>Drag photos and videos here</p>
+          <br />
         </div>
         <form onSubmit={handleSubmit}>
           <input type="file" onChange={handleFileUpload} />
+          <br />
+          <br />
+          <textarea placeholder="Write a caption" value={captions} onChange={(event) => setCaptions(event.target.value)} />
           <button type="submit">Upload</button>
         </form>
       </div>

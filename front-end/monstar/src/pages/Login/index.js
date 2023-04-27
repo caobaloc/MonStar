@@ -2,31 +2,35 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Login.module.scss';
-import Register from '~/pages/Register';
 import Footer from '~/pages/Footer';
 import images from '~/assets/images';
+import { loginUser } from '~/redux/APIRequest';
 
 const cx = classNames.bind(styles);
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmitLogin = (event) => {
-    event.preventDefault();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const newUser = {
+      username: username,
+      password: password,
+    };
+    loginUser(newUser, dispatch, navigate);
+
     const config = {
       header: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
     };
-
     axios
       .post(
         'http://localhost:8080/api/auth/login',
@@ -36,17 +40,13 @@ const Login = () => {
         },
         config,
       )
-
       .then((res) => {
-        setMessage("You're logged in");
+        // setMessage("You're logged in");
+        localStorage.setItem('token', res.data.data.access_token);
         navigate('/');
-        console.log('data:  ' + res.data);
-      })
-      .then((res) => {
-        console.log('status: ' + config);
+        console.log('Thanh cong!');
       })
       .catch((error) => {
-        setErrorMessage('Sorry, your password was incorrect. Please double-check your password.');
         console.log('Error: ' + error);
       });
   };
@@ -61,17 +61,19 @@ const Login = () => {
           <div className={cx('login-container')}>
             <img src={images.logo} alt="" />
             <br />
-            <input
-              type="text"
-              placeholder="Phone number, username, or email"
-              id="username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-            <br />
-            <input type="password" placeholder="Password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-            <br />
-            <button onClick={handleSubmitLogin}>Login</button>
+            <form onSubmit={handleLogin}>
+              <input
+                type="text"
+                placeholder="Phone number, username, or email"
+                id="username"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              <br />
+              <input type="password" placeholder="Password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+              <br />
+              <button type="submit">Login</button>
+            </form>
             <div className={cx('flex-or')}>
               <div>
                 <hr />
@@ -86,7 +88,7 @@ const Login = () => {
             <br />
             <label htmlFor=""></label>
             <p className="text-error" style={{ color: 'red', margin: '10px 35px' }}>
-              {errorMessage}
+              {/* {errorMessage} */}
             </p>
           </div>
           <div>

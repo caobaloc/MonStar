@@ -50,12 +50,20 @@
   .pro-menu {
     border-top: solid 0.5px rgb(104, 102, 102);
     // height: px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    Button {
-      padding: 15px 24px;
-      color: white;
+    .pro-menu-post {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      Button {
+        padding: 15px 24px;
+        color: white;
+      }
+    }
+    :last-child {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-column-gap: 9px;
+      grid-row-gap: 25px;
     }
   }
 }

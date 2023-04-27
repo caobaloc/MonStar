@@ -1,48 +1,33 @@
 import classNames from 'classnames/bind';
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import images from '~/assets/images';
-import styles from './HomeContent.module.scss';
-import Button from '~/components/Button';
+import styles from './PostDetails.module.scss';
+import Comment from '../comment';
 import LikeButton from '~/components/LikeBtn/index';
 import SaveButton from '~/components/saveBtn/index';
 import CmtButton from '~/components/cmtBtn/index';
 import ShareButton from '~/components/shareBtn/index';
 import HomeHeader from '~/components/Layout/DefaultLayout/HomeLayout/Header';
-import PostDetails from '~/components/postDetails';
-import * as request from '~/utils/requests';
 
 const cx = classNames.bind(styles);
 
-function HomeContent({ imgAvatar, idPost, caption, time, like, comment, btnLike, username }) {
-  {
-    /* các prop cần truyền 
-    username, avatar, like, save, comment, number of like, times, captions */
-  }
+function PostDetails({ imgAvatar, idPost, caption, time, like, comment, btnLike, username, url }) {
   const [comments, setComments] = useState('');
-  const [post, setPost] = useState([]);
   const token = localStorage.getItem('token');
-  const [close, setClose] = useState(false);
+  const [block, setBlock] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    request
-      .get(`/post/${idPost}`, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
-      .then((res) => setPost(res.data.post))
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [close]);
+  const divStyle = {
+    display: block ? 'block' : 'none',
+  };
 
-  function btnDisplay() {
-    setClose(true);
+  function closeModal() {
+    setBlock(false);
+    console.log('block 1: ', block);
   }
 
   function createComment() {
@@ -67,14 +52,23 @@ function HomeContent({ imgAvatar, idPost, caption, time, like, comment, btnLike,
         console.log('Error: ' + error);
       });
   }
+
   return (
-    <div>
-      <HomeHeader headerAvatar={imgAvatar} username={username} />
-      <div className={cx('header-content')}>
-        <div className={cx('images-home')}>
-          <img src={imgAvatar} alt="Image user" />
+    <div className={cx('post-details')} style={divStyle}>
+      <button onClick={closeModal}>
+        <img src={images.iconClose} alt="" />
+      </button>
+      <div className={cx('content')}>
+        <div className={cx('left-content')}>
+          <img src={imgAvatar} alt="" />
         </div>
-        <div className={cx('home-ct-padding')}>
+        <div className={cx('right')}>
+          <HomeHeader headerAvatar={imgAvatar} username={username} />
+          <div className={cx('comment')}>
+            {comment.list_comments.map((index) => {
+              return <Comment key={index.id} cmt={index.content} username={index.users.username} />;
+            })}
+          </div>
           <div className={cx('home-btn-icon')}>
             <div>
               <LikeButton idpost={idPost} />
@@ -82,29 +76,8 @@ function HomeContent({ imgAvatar, idPost, caption, time, like, comment, btnLike,
               <ShareButton />
             </div>
             <div>
-              <SaveButton idpost={idPost} />
+              <SaveButton />
             </div>
-          </div>
-
-          <div className={cx('like-number')}>
-            <Button>{like}</Button> {/*  like */}
-            <p>{caption}</p>
-            {/* <PostDetails idPost={idPost} imgAvatar={imgAvatar} caption={caption} like={like} username={username} url={imgAvatar} /> */}
-            <button onClick={btnDisplay}>
-              {comment}
-              {close && (
-                <PostDetails
-                  idPost={post.id}
-                  imgAvatar={post.photo.url}
-                  caption={post.caption}
-                  like={post.likes.total}
-                  username={post.user.username}
-                  url={post.photo.url}
-                  comment={post.comments}
-                />
-              )}
-            </button>
-            <br />
           </div>
           <div className={cx('home-cmt')}>
             <div>
@@ -118,8 +91,7 @@ function HomeContent({ imgAvatar, idPost, caption, time, like, comment, btnLike,
     </div>
   );
 }
-
-HomeContent.prototype = {
+PostDetails.prototype = {
   imgAvatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   idPost: PropTypes.string.isRequired,
@@ -128,5 +100,6 @@ HomeContent.prototype = {
   like: PropTypes.string.isRequired,
   comment: PropTypes.array.isRequired,
   btnLike: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
-export default HomeContent;
+export default PostDetails;

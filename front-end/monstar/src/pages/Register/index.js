@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Routes, Route, Link } from 'react-router-dom';
 
 import styles from './Register.module.scss';
@@ -45,13 +46,10 @@ const Register = () => {
         config,
       )
       .then((response) => {
-        // setMessage("You're logged in");
-        navigate('/login/Login');
-        console.log('Registered' + response);
+        navigate('/Login');
+        console.log('Registered: ' + response.data.error);
       })
       .catch((error) => {
-        // console.log(error);
-        // setErrorMessage('Sorry, your password was incorrect. Please double-check your password.');
         console.log('Error: ' + error);
       });
   };
@@ -67,8 +65,13 @@ const Register = () => {
           <input type="text" placeholder="Last Name" value={last_name} onChange={(event) => setLast_name(event.target.value)} />
           <input type="text" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)} />
           <input type="text" placeholder="Gender" value={gender} onChange={(event) => setGender(event.target.value)} />
-          <input type="text" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
-          <input type="text" placeholder="Confirm Password" value={password_confirm} onChange={(event) => setPassword_confirm(event.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={password_confirm}
+            onChange={(event) => setPassword_confirm(event.target.value)}
+          />
           <span htmlFor="">
             People who use our service may have uploaded <br /> your contact information to Instagram.]
             <a href="https://www.facebook.com/help/instagram/261704639352628"> Learn More.</a>
